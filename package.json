@@ -4,9 +4,12 @@
   "description": "headless backend for todo application",
   "main": "server.js",
   "scripts": {
-    "dev": "node --env-file=.env --watch server.js",
-    "start": "node --env-file=.env server.js"
+    "dev": "node --env-file=.env --watch ./src/server.js",
+    "start": "node --env-file=.env ./src/server.js",
+    "compose-dev": "docker compose -f docker-compose-dev.yml up"
   },
+
+
   "keywords": [],
   "author": "Bilal Amjad",
   "developer": "Bilal Amjad",

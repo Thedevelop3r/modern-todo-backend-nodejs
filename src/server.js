@@ -7,7 +7,7 @@ const { checkinLogger, errorHandler, notFound } = require("./middleware");
 const { asyncTryCatchWrapper } = require("./wrapper/async-trycatch");
 const { router } = require("./routes");
 const app = express();
-const port = process.env.NODE_DOCKER_PORT || port || 3000;
+const port = process.env.NODE_DOCKER_PORT || 3000;
 
 // security
 app.disable("x-powered-by");
@@ -58,6 +58,7 @@ console.log("environment:", process.env.NODE_ENV);
 console.log("database:", process.env.MONGO_URL);
 console.log("JWT_SECRET".toLowerCase(), process.env.JWT_SECRET);
 console.log("port:", process.env.NODE_DOCKER_PORT || port);
+
 
 dbConnection.connect().then(() => {
   Tools.Fancy.Display("Database connected");

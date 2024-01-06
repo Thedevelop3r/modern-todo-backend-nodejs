@@ -5,23 +5,24 @@ ARG NODE_VERSION=20.8.0
 FROM node:${NODE_VERSION}-alpine
 
 # Use production node environment by default.
-ENV NODE_ENV production
+RUN addgroup app && adduser -S -G app app
 
-WORKDIR /usr/src/app
+USER app
 
-RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=package-lock.json,target=package-lock.json \
-    --mount=type=cache,target=/root/.npm \
-    npm ci --omit=dev
+WORKDIR /app
 
-# Run the application as a non-root user.
-USER node
+COPY package*.json ./
 
-# Copy the rest of the source files into the image.
-COPY . .
+USER root
 
-# Expose the port that the application listens on.
-EXPOSE 3000
+RUN chown -R app:app .
 
-# Run the application.
+USER app
+
+RUN npm install
+
+COPY . . 
+
+EXPOSE 8000 
+
 CMD npm start
