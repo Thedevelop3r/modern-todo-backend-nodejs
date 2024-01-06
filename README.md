@@ -9,4 +9,4 @@ This backend is being developed as headless nodejs api for Nextjs frontend for c
 
 
 
-## development started on jan-06-2024 -- mm-dd-yyyy - (in progress)
+## development started on jan-06-2024 -- (in progress)
