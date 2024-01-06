@@ -59,6 +59,7 @@ console.log("database:", process.env.MONGO_URL);
 console.log("JWT_SECRET".toLowerCase(), process.env.JWT_SECRET);
 console.log("port:", process.env.NODE_DOCKER_PORT || port);
 
+console.log("dbConnection", dbConnection);
 
 dbConnection.connect().then(() => {
   Tools.Fancy.Display("Database connected");

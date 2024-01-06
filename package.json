@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "node --env-file=.env --watch ./src/server.js",
-    "start": "node --env-file=.env ./src/server.js",
-    "compose-dev": "docker compose -f docker-compose-dev.yml up"
+    "start": "node --env-file=.env ./src/server.js"
   },
 
 
