@@ -1,6 +1,6 @@
 # Modern Todo Application Backend
 
-written by [Bilal Amjad](@Thedevelop3r)
+written by [Bilal Amjad](https://github.com/Thedevelop3r)
 in [Node.js](https://nodejs.org/en/) using [Express.js](https://expressjs.com/) and [MongoDB](https://www.mongodb.com/)
 
 
