@@ -9,6 +9,7 @@ router.post(
   "/register",
   asyncTryCatchWrapper(async (req, res) => {
     const newUser = await User.create(req.body);
+    newUser.password = undefined;
     delete newUser.password;
     res.status(201).json(newUser);
   })
