@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "node --env-file=.env --watch server.js",
-    "start": "node --env-file=.env server.js"
+    "dev": "node --env-file=my.env --watch server.js",
+    "start": "node --env-file=my.env server.js"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +13,8 @@
   "dependencies": {
     "express": "^4.18.2",
     "mongoose": "^8.0.3"
+  },
+  "engines": {
+    "node": "^20"
   }
 }
