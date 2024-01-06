@@ -5,10 +5,21 @@ const { User } = require("../models");
 class UserController {
   constructor() {}
 
-  async index() {
+  async getAllUsers({ size = 10, page = 1 }) {
     try {
-      const users = await User.find({});
-      return users;
+      const users = await User.find()
+        .limit(size)
+        .skip((page - 1) * size)
+        .sort({ created_at: -1 });
+      // provide additional information
+      const totalPages = Math.ceil((await User.countDocuments()) / size);
+      const info = {
+        totalRecords: await User.countDocuments(),
+        page: page,
+        size: size,
+        totalPages: totalPages,
+      };
+      return { data: users, info };
     } catch (err) {
       return err;
     }

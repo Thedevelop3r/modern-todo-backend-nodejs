@@ -11,7 +11,7 @@ const port = 3000;
 app.disable("x-powered-by");
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 // REST activity logger
 app.use(checkinLogger);
 

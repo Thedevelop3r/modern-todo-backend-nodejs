@@ -12,5 +12,11 @@ router.post(
   })
 );
 
+// only admin route
+// router.get("/all", async (req, res) => {
+//   const users = await User.getAllUsers(req.query);
+//   res.status(200).json(users);
+// });
+
 // export
 module.exports = { userRouter: router };
