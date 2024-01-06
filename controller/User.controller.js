@@ -44,6 +44,23 @@ class UserController {
     const deletedUser = await User.findByIdAndDelete(id);
     return deletedUser;
   }
+  async login(body) {
+    const { email, password } = body;
+    const user = await User.findOne({ email: email });
+    if (!user) return null;
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) return null;
+    user.password = undefined;
+    delete user.password;
+    return user;
+  }
+  static async verifyUser(id, token) {
+    const user = await User.findOne({ _id: id });
+    if (!user) return null;
+    user.password = undefined;
+    delete user.password;
+    return user;
+  }
 }
 
-module.exports = { UserController: UserController };
+module.exports = { UserController };
