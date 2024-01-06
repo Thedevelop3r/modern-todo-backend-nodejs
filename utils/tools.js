@@ -1,7 +1,10 @@
-const Tools = {};
-module.exports = { Tools };
+const jwt = require("jsonwebtoken");
+const { User } = require("./user");
+const { Math } = require("./math");
 
-Tools.add = (a, b) => a + b;
-Tools.random = (from = 1, to = 100) => {
-  return Math.floor(Math.random() * (to - from + 1) + from);
+const Tools = {
+  User,
+  Math,
 };
+
+module.exports = { Tools };
