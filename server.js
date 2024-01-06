@@ -1,4 +1,6 @@
 const express = require("express");
+const helmet = require("helmet");
+const cors = require("cors");
 const { Tools } = require("./utils/tools");
 const { DatabaseConnection } = require("./db.config");
 const { checkinLogger, errorHandler, notFound } = require("./middleware");
@@ -7,9 +9,11 @@ const { router } = require("./routes");
 const app = express();
 const port = 3000;
 
-// disable x-powered-by header
+// security
 app.disable("x-powered-by");
-
+app.use(helmet());
+app.use(cors());
+// content parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // REST activity logger
