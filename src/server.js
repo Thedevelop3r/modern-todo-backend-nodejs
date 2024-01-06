@@ -7,7 +7,7 @@ const { checkinLogger, errorHandler, notFound } = require("./middleware");
 const { asyncTryCatchWrapper } = require("./wrapper/async-trycatch");
 const { router } = require("./routes");
 const app = express();
-const port = 3000;
+const port = process.env.NODE_DOCKER_PORT || 3000;
 
 // security
 app.disable("x-powered-by");
@@ -53,7 +53,17 @@ app.use(errorHandler);
 app.use(notFound);
 
 const dbConnection = new DatabaseConnection();
+Tools.Fancy.Display("Starting application");
+console.log("environment:", process.env.NODE_ENV);
+console.log("database:", process.env.MONGO_URL);
+console.log("JWT_SECRET".toLowerCase(), process.env.JWT_SECRET);
+console.log("port:", process.env.NODE_DOCKER_PORT || port);
+
+console.log("dbConnection", dbConnection);
+
 dbConnection.connect().then(() => {
-  console.log("Database connected");
-  app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+  Tools.Fancy.Display("Database connected");
+  app.listen(process.env.NODE_DOCKER_PORT || port, () => {
+    Tools.Fancy.Display(`Server listening on port ${port}`);
+  });
 });

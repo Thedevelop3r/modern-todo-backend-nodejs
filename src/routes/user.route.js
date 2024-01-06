@@ -9,6 +9,7 @@ router.post(
   "/register",
   asyncTryCatchWrapper(async (req, res) => {
     const newUser = await User.create(req.body);
+    delete newUser.password;
     res.status(201).json(newUser);
   })
 );
@@ -21,6 +22,7 @@ router.post(
     const token = Tools.User.generateToken(user);
     Tools.User.SetCookie(res, token);
     delete user.password;
+    console.log("password-changed");
     res.status(200).json(user);
   })
 );
