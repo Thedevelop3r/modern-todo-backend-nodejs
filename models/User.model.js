@@ -15,10 +15,26 @@ const userSchema = new Schema({
     minlength: 6,
     required: true,
   },
-  role: String,
-  status: String,
+  role: {
+    type: String,
+    enum: ["admin", "user"],
+    default: "user",
+  },
+  status: {
+    type: String,
+    enum: ["active", "inactive"],
+    default: "active",
+  },
   created_at: Date,
   updated_at: Date,
+});
+
+// set timestamp
+userSchema.pre("save", function (next) {
+  const currentDate = new Date();
+  this.updated_at = currentDate;
+  if (!this.created_at) this.created_at = currentDate;
+  next();
 });
 
 const User = model("User", userSchema);

@@ -1,10 +1,7 @@
 const express = require("express");
 const { Tools } = require("./utils/tools");
 const { DatabaseConnection } = require("./db.config");
-const { UserController } = require("./controller/User.controller");
-const { checkinLogger } = require("./middleware/checkin-logger");
-const { errorHandler } = require("./middleware/error-handler");
-const { notFound } = require("./middleware/not-found");
+const { checkinLogger, errorHandler, notFound } = require("./middleware");
 const { asyncTryCatchWrapper } = require("./wrapper/async-trycatch");
 const { router } = require("./routes");
 const app = express();

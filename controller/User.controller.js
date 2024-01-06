@@ -1,6 +1,6 @@
 // User.controller.js
 
-const { User } = require("../models/User.model");
+const { User } = require("../models");
 
 class UserController {
   constructor() {}
