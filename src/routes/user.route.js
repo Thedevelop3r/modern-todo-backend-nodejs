@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { asyncTryCatchWrapper } = require("../wrapper/async-trycatch");
-const { UserController } = require("../controller/User.controller");
+const { UserController } = require("../controller");
 const { Tools } = require("../utils/tools");
 
 const User = new UserController();
