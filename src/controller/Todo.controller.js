@@ -1,4 +1,4 @@
-const { Todo, User } = require("../models");
+const { Todo } = require("../models");
 
 class TodoController {
   constructor() {}
