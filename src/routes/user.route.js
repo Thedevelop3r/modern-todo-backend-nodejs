@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { asyncTryCatchWrapper } = require("../wrapper/async-trycatch");
-const { UserController } = require("../controller/User.controller");
+const { UserController } = require("../controller");
 const { Tools } = require("../utils/tools");
 
 const User = new UserController();
@@ -9,6 +9,7 @@ router.post(
   "/register",
   asyncTryCatchWrapper(async (req, res) => {
     const newUser = await User.create(req.body);
+    newUser.password = undefined;
     delete newUser.password;
     res.status(201).json(newUser);
   })

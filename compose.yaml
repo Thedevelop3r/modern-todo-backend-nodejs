@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   mongodb:
+    container_name: mongodb
     image: mongo:5.0.2
     restart: unless-stopped
     env_file: ./.env
@@ -13,6 +14,7 @@ services:
     volumes:
       - db:/data/db
   app:
+    container_name: modern-todo-application
     user: root
     depends_on:
       - mongodb
@@ -25,7 +27,7 @@ services:
     develop:
       watch:
         - path: .
-          action: sync+restart
+          action: sync
           target: /app
           ignore:
             - node_modules/

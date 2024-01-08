@@ -1,7 +1,7 @@
 // User.model.js
 
 const bcrypt = require("bcrypt");
-const { DatabaseConnection, Mongoose } = require("../db.config");
+const { Mongoose } = require("../db.config");
 const { Schema, model } = Mongoose;
 
 const userSchema = new Schema({

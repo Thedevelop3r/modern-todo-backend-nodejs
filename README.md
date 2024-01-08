@@ -32,8 +32,8 @@ npm run dev
 # build docker image
 docker build -t todo-backend .
 
-# run docker image in dev mode
-docker compose up
+# run docker image in dev mode - always use --build flag to get started with a fresh build
+docker compose up --build
 
 # start docker compose watch mode
 docker compose watch
