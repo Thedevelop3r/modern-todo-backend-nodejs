@@ -12,6 +12,9 @@ const auth = async (req, res, next) => {
     if (!user) throw new Error();
     req.user = user;
     req.token = token;
+    console.log("\n-----------------------------------\n");
+    console.log("** AUTH MIDDLEWARE ** -> username:", user.name, "role:", user.role, "status:", user.status);
+    console.log("\n-----------------------------------\n");
     next();
   } catch (err) {
     res.status(401).json({ message: "Please authenticate" });
