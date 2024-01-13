@@ -1,6 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const { Tools } = require("./utils/tools");
 const { DatabaseConnection } = require("./db.config");
 const { checkinLogger, errorHandler, notFound } = require("./middleware");
@@ -18,6 +19,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(cookieParser());
 // content parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
