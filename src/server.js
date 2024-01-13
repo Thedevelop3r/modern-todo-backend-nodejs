@@ -1,18 +1,25 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const { Tools } = require("./utils/tools");
 const { DatabaseConnection } = require("./db.config");
 const { checkinLogger, errorHandler, notFound } = require("./middleware");
 const { asyncTryCatchWrapper } = require("./wrapper/async-trycatch");
 const { router } = require("./routes");
 const app = express();
-const port = process.env.NODE_DOCKER_PORT || 3000;
+const port = process.env.NODE_DOCKER_PORT || 4000;
 
 // security
 app.disable("x-powered-by");
 app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+app.use(cookieParser());
 // content parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

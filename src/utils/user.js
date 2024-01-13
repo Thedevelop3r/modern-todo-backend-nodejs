@@ -5,8 +5,10 @@ User.SetCookie = (res, user) => {
   res.cookie("token", user, {
     expires: new Date(Date.now() + 86400000),
     httpOnly: true,
+    sameSite: "lax",
+    path: "/",
   });
-  res.setHeader("Set-Cookie", "token=" + user + "; HttpOnly; Expires=" + new Date(Date.now() + 86400000));
+  res.setHeader("Set-Cookie", "token=" + user + "; HttpOnly; Expires=" + new Date(Date.now() + 86400000) + "; SameSite=Lax" + "; Path=/");
 };
 
 User.generateToken = (user) => {
