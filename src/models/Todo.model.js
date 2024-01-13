@@ -16,15 +16,20 @@ const todoSchema = new Schema({
     ref: "User",
     required: true,
   },
-  created_at: Date,
-  updated_at: Date,
+  status: {
+    type: String,
+    enum: ["pending", "progress", "completed"],
+    default: "pending",
+  },
+  createdAt: Date,
+  updatedAt: Date,
 });
 
 // set timestamp
 todoSchema.pre("save", function (next) {
   const currentDate = new Date();
-  this.updated_at = currentDate;
-  if (!this.created_at) this.created_at = currentDate;
+  this.updatedAt = currentDate;
+  if (!this.createdAt) this.createdAt = currentDate;
   next();
 });
 

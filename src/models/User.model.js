@@ -26,8 +26,8 @@ const userSchema = new Schema({
     enum: ["active", "inactive"],
     default: "active",
   },
-  created_at: Date,
-  updated_at: Date,
+  createdAt: Date,
+  updatedAt: Date,
 });
 
 // set timestamp
@@ -43,8 +43,8 @@ userSchema.methods.comparePassword = async function (password) {
 // hash password
 userSchema.pre("save", async function (next) {
   const currentDate = new Date();
-  this.updated_at = currentDate;
-  if (!this.created_at) this.created_at = currentDate;
+  this.updatedAt = currentDate;
+  if (!this.createdAt) this.createdAt = currentDate;
   if (!this.isModified("password")) return next();
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(this.password, salt);

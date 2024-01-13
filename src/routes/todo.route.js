@@ -34,7 +34,9 @@ router.post(
     const { body } = req;
     const userId = req.user._id;
     const userName = req.user.name;
+    
     console.log("user -> ", userName, " created todo -> ", body);
+    // console.log("userId -> ", userId, " created todo -> ", req);
     // const newtodos = [];
     // for (let i = 0; i < 1000; i++) {
     //   const newTodo = { ...body };
