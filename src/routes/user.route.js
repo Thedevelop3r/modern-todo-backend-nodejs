@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { asyncTryCatchWrapper } = require("../wrapper/async-trycatch");
 const { UserController } = require("../controller");
 const { Tools } = require("../utils/tools");
+const { auth } = require("../middleware");
 
 const User = new UserController();
 
@@ -21,8 +22,17 @@ router.post(
     const user = await User.login(req.body);
     if (!user) return res.status(400).json({ message: "Invalid credentials" });
     const token = Tools.User.generateToken(user);
-    Tools.User.SetCookie(res, token);
+    Tools.User.setCookie(res, token);
     delete user.password;
+    res.status(200).json(user);
+  })
+);
+
+router.get(
+  "/me",
+  auth,
+  asyncTryCatchWrapper(async (req, res) => {
+    const user = req.user;
     res.status(200).json(user);
   })
 );

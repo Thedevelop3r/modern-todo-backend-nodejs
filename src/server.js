@@ -22,7 +22,7 @@ app.use(
 app.use(cookieParser());
 // content parsing
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 // REST activity logger
 app.use(checkinLogger);
 

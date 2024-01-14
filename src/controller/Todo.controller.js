@@ -42,10 +42,10 @@ class TodoController {
   }
 
   async update({ todoId, body, userId }) {
-    const parsedBody = {
-      title: body.title,
-      description: body.description,
-    };
+    const parsedBody = {};
+    if (body.title) parsedBody.title = body.title;
+    if (body.description) parsedBody.description = body.description;
+    if (body.status) parsedBody.status = body.status;
     const updatedTodo = await Todo.findOneAndUpdate({ _id: todoId, ownerId: userId }, parsedBody, { new: true });
     return updatedTodo;
   }
