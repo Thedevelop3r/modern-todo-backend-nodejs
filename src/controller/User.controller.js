@@ -65,9 +65,7 @@ class UserController {
     return user;
   }
   static async verifyUser(id) {
-    console.log("model verify user id", id);
     const user = await User.findById(id);
-    console.log("model verify user", user);
     if (!user) return null;
     user.password = undefined;
     delete user.password;
