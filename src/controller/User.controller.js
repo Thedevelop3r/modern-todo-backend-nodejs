@@ -45,6 +45,8 @@ class UserController {
     // if (body.role) updatedUserBody.role = body.role;
 
     const updatedUser = await User.findByIdAndUpdate(id, updatedUserBody, { new: true });
+    updatedUser.password = undefined;
+    delete updatedUser.password;
     return updatedUser;
   }
 
