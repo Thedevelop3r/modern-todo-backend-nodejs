@@ -36,7 +36,15 @@ class UserController {
   }
 
   async update(id, body) {
-    const updatedUser = await User.findByIdAndUpdate(id, body, { new: true });
+    const updatedUserBody = {};
+    if (body.name) updatedUserBody.name = body.name;
+    if (body.status) updatedUserBody.status = body.status;
+    // dangerous below
+    // if (body.email) updatedUserBody.email = body.email;
+    // if (body.password) updatedUserBody.password = body.password;
+    // if (body.role) updatedUserBody.role = body.role;
+
+    const updatedUser = await User.findByIdAndUpdate(id, updatedUserBody, { new: true });
     return updatedUser;
   }
 

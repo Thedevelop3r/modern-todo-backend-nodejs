@@ -37,6 +37,16 @@ router.get(
   })
 );
 
+// /update
+router.put(
+  "/update",
+  auth,
+  asyncTryCatchWrapper(async (req, res) => {
+    const user = await User.update(req.user._id, req.body);
+    res.status(200).json(user);
+  })
+);
+
 router.post(
   "/logout",
   asyncTryCatchWrapper(async (req, res) => {

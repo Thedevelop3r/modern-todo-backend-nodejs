@@ -28,12 +28,8 @@ const userSchema = new Schema({
   },
   createdAt: Date,
   updatedAt: Date,
-});
+}, { timestamps: true });
 
-// set timestamp
-userSchema.pre("save", function (next) {
-  next();
-});
 // comparePassword
 userSchema.methods.comparePassword = async function (password) {
   const isMatch = await bcrypt.compare(password, this.password);
@@ -42,9 +38,6 @@ userSchema.methods.comparePassword = async function (password) {
 
 // hash password
 userSchema.pre("save", async function (next) {
-  const currentDate = new Date();
-  this.updatedAt = currentDate;
-  if (!this.createdAt) this.createdAt = currentDate;
   if (!this.isModified("password")) return next();
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(this.password, salt);

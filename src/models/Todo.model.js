@@ -23,15 +23,7 @@ const todoSchema = new Schema({
   },
   createdAt: Date,
   updatedAt: Date,
-});
-
-// set timestamp
-todoSchema.pre("save", function (next) {
-  const currentDate = new Date();
-  this.updatedAt = currentDate;
-  if (!this.createdAt) this.createdAt = currentDate;
-  next();
-});
+}, { timestamps: true });
 
 const Todo = model("Todo", todoSchema);
 
