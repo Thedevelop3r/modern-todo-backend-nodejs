@@ -11,6 +11,10 @@ User.setCookie = (res, token) => {
   res.setHeader("Set-Cookie", "token=" + token + "; HttpOnly; Expires=" + new Date(Date.now() + 86400000) + "; SameSite=Lax" + "; Path=/");
 };
 
+User.RemoveCookie = (res) => {
+  res.setHeader("Set-Cookie", "token=; HttpOnly; Expires=" + new Date(Date.now()) + "; SameSite=Lax" + "; Path=/");
+};
+
 User.generateToken = (user) => {
   console.log("user generete token ", user);
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
