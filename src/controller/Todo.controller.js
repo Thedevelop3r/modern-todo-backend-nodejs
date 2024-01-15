@@ -11,6 +11,7 @@ class TodoController {
         .limit(limit)
         .skip((page - 1) * limit)
         .sort({ created_at: -1 });
+      // TODO: 1 Apply sorting and filters
       // provide additional information
       const totalPages = Math.ceil((await Todo.countDocuments()) / limit);
       const meta = {

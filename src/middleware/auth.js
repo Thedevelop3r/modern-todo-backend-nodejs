@@ -26,12 +26,9 @@ const auth = async (req, res, next) => {
     }
     console.log("token found! -> decoding...");
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("decoded token:", decoded);
     const userId = decoded._id;
-    console.log("userId:", userId);
     console.log("verifying user...");
     const user = await UserController.verifyUser(userId);
-    console.log("user:", user);
     if (!user) {
       console.log("user not found!");
       throw new Error("No user found");
