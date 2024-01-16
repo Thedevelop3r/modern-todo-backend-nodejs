@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { asyncTryCatchWrapper } = require("../wrapper/async-trycatch");
-const { TodoController } = require("../controller");
+const { TrashController } = require("../controller");
 // const { Tools } = require("../utils/tools");
 
 router.get(
@@ -8,7 +8,7 @@ router.get(
   asyncTryCatchWrapper(async (req, res) => {
     const { page, limit } = req.query;
     const userId = req.user._id;
-    const { data, meta } = await TodoController.getTodos({ page, limit, limit: limit }, userId);
+    const { data, meta } = await TrashController.getTodos({ page, limit, limit: limit }, userId);
     res.status(200).json({ data, meta });
   })
 );
@@ -18,23 +18,12 @@ router.get(
   asyncTryCatchWrapper(async (req, res) => {
     const { id } = req.params;
     const userId = req.user._id;
-    const todo = await TodoController.getTodoById({ todoId: id, userId });
+    const todo = await TrashController.getTodoById({ todoId: id, userId });
     if (!todo) {
       res.status(404).json({ message: "Todo not found" });
       return;
     }
     res.status(200).json(todo);
-  })
-);
-
-router.post(
-  "/",
-  asyncTryCatchWrapper(async (req, res) => {
-    const { body } = req;
-    const userId = req.user._id;
-    const userName = req.user.name;
-    const newTodo = await TodoController.create({ body, userId });
-    res.status(201).json(newTodo);
   })
 );
 
@@ -44,7 +33,7 @@ router.put(
     const { id } = req.params;
     const { body } = req;
     const userId = req.user._id;
-    const updatedTodo = await TodoController.update({ todoId: id, body, userId });
+    const updatedTodo = await TrashController.recover({ todoId: id, userId });
     if (!updatedTodo) {
       res.status(404).json({ message: "Todo not found" });
       return;
@@ -58,7 +47,7 @@ router.delete(
   asyncTryCatchWrapper(async (req, res) => {
     const { id } = req.params;
     const userId = req.user._id;
-    const deletedTodo = await TodoController.destroy({ todoId: id, userId });
+    const deletedTodo = await TrashController.destroy({ todoId: id, userId });
     if (!deletedTodo) {
       res.status(404).json({ message: "Todo not found" });
       return;
@@ -67,4 +56,4 @@ router.delete(
   })
 );
 
-module.exports = { todoRouter: router };
+module.exports = { trashRouter: router };

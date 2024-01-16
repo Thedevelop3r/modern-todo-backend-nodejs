@@ -42,3 +42,7 @@ docker compose watch
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+## Permission
+You are free to use this code for your own projects, modify it, or publish it anywhere.
+please give me credit if you use it. (@Thedevelop3r), thanks.

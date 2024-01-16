@@ -1,5 +1,5 @@
 {
-  "name": "modern-todo-app",
+  "name": "modern-todo-app-backend",
   "version": "1.0.0",
   "description": "headless backend for todo application",
   "main": "server.js",
@@ -12,7 +12,7 @@
   "developer": "Bilal Amjad",
   "developer-github": "www.github.com/thedevelop3r",
   "username": "@thedevelop3r",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
